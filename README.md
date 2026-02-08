@@ -14,6 +14,8 @@ A beautiful, interactive web application featuring a friendly fox in its cozy fo
 - **Sleep Mode**: Put the fox to sleep to restore energy
 - **Dynamic Status**: Fox responds based on energy and happiness levels
 
+<img width="1876" height="1618" alt="image" src="https://github.com/user-attachments/assets/24ad5c2b-979d-40ba-b353-71c76723fdbc" />
+
 ### Bower Environment
 - **Day/Night Cycle**: Switch between daytime, nighttime, and dawn
 - **Adjustable Lighting**: Slider to control bower brightness
