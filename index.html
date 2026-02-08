@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fox Bower</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a3c27 0%, #0d2618 100%);
+            color: #e8d8b6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 2px solid #5a3921;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: #f57c00;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #c8b188;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .bower-area {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(42, 63, 47, 0.7);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid #5a3921;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .controls {
+            flex: 0 0 300px;
+            background: rgba(90, 57, 33, 0.8);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid #8d6e63;
+        }
+        
+        .bower-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #ff9800;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px #000;
+        }
+        
+        .bower-scene {
+            height: 400px;
+            background: linear-gradient(to bottom, #2d5a3d 0%, #1e3a29 30%, #15271d 100%);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #8d6e63;
+        }
+        
+        .fox {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 100px;
+            transition: all 0.5s ease;
+            z-index: 10;
+        }
+        
+        .fox-body {
+            position: absolute;
+            width: 100px;
+            height: 60px;
+            background-color: #d84315;
+            border-radius: 50% 50% 40% 40%;
+            bottom: 0;
+            left: 10px;
+        }
+        
+        .fox-head {
+            position: absolute;
+            width: 70px;
+            height: 65px;
+            background-color: #ff8a65;
+            border-radius: 50% 50% 40% 40%;
+            bottom: 40px;
+            left: 25px;
+        }
+        
+        .fox-ear {
+            position: absolute;
+            width: 25px;
+            height: 40px;
+            background-color: #ff8a65;
+            border-radius: 50% 50% 0 0;
+            top: -15px;
+        }
+        
+        .fox-ear-left {
+            left: 10px;
+            transform: rotate(-10deg);
+        }
+        
+        .fox-ear-right {
+            right: 10px;
+            transform: rotate(10deg);
+        }
+        
+        .fox-eye {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #000;
+            border-radius: 50%;
+            top: 25px;
+        }
+        
+        .fox-eye-left {
+            left: 15px;
+        }
+        
+        .fox-eye-right {
+            right: 15px;
+        }
+        
+        .fox-nose {
+            position: absolute;
+            width: 12px;
+            height: 8px;
+            background-color: #000;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .fox-tail {
+            position: absolute;
+            width: 80px;
+            height: 30px;
+            background-color: #d84315;
+            border-radius: 50% 0 0 50%;
+            bottom: 15px;
+            right: 0;
+        }
+        
+        .bush {
+            position: absolute;
+            background-color: #2e7d32;
+            border-radius: 50%;
+            bottom: 0;
+        }
+        
+        .bush-1 {
+            width: 150px;
+            height: 80px;
+            left: 20px;
+            bottom: 20px;
+        }
+        
+        .bush-2 {
+            width: 120px;
+            height: 70px;
+            right: 40px;
+            bottom: 30px;
+        }
+        
+        .tree {
+            position: absolute;
+            background-color: #5d4037;
+            border-radius: 5px;
+        }
+        
+        .tree-1 {
+            width: 25px;
+            height: 150px;
+            left: 100px;
+            bottom: 0;
+        }
+        
+        .tree-2 {
+            width: 20px;
+            height: 120px;
+            right: 120px;
+            bottom: 0;
+        }
+        
+        .tree-top {
+            position: absolute;
+            background-color: #388e3c;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            bottom: 120px;
+            left: -30px;
+        }
+        
+        .moon {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: #fffde7;
+            border-radius: 50%;
+            top: 30px;
+            right: 40px;
+            box-shadow: 0 0 30px #fff9c4;
+            opacity: 0.8;
+        }
+        
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            width: 3px;
+            height: 3px;
+        }
+        
+        .controls-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #ffcc80;
+            margin-bottom: 25px;
+        }
+        
+        .control-group {
+            margin-bottom: 25px;
+        }
+        
+        .control-label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #ffcc80;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            background-color: #5d4037;
+            color: #ffcc80;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            padding-left: 20px;
+        }
+        
+        .btn:hover {
+            background-color: #8d6e63;
+            transform: translateY(-3px);
+        }
+        
+        .btn i {
+            margin-right: 10px;
+            width: 25px;
+        }
+        
+        .slider-container {
+            background-color: #3e2723;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 20px;
+            -webkit-appearance: none;
+            background: #8d6e63;
+            border-radius: 10px;
+            outline: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #ff9800;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .status {
+            background-color: #1b5e20;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .status-title {
+            font-size: 1.3rem;
+            color: #ffcc80;
+            margin-bottom: 10px;
+        }
+        
+        .status-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .fox-message {
+            position: absolute;
+            background-color: rgba(90, 57, 33, 0.9);
+            color: #ffcc80;
+            padding: 15px;
+            border-radius: 15px;
+            width: 200px;
+            text-align: center;
+            bottom: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 20;
+            font-size: 1.1rem;
+            border: 2px solid #ff9800;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 2px solid #5a3921;
+            color: #c8b188;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .controls {
+                flex: 1;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-paw"></i> The Fox Bower</h1>
+            <p class="subtitle">A cozy digital den where a friendly fox resides</p>
+        </header>
+        
+        <div class="main-content">
+            <section class="bower-area">
+                <h2 class="bower-title">Fox's Forest Bower</h2>
+                <div class="bower-scene" id="bowerScene">
+                    <!-- Stars will be generated by JavaScript -->
+                    <div class="stars" id="stars"></div>
+                    <div class="moon"></div>
+                    
+                    <!-- Trees -->
+                    <div class="tree tree-1">
+                        <div class="tree-top"></div>
+                    </div>
+                    <div class="tree tree-2">
+                        <div class="tree-top"></div>
+                    </div>
+                    
+                    <!-- Bushes -->
+                    <div class="bush bush-1"></div>
+                    <div class="bush bush-2"></div>
+                    
+                    <!-- Fox -->
+                    <div class="fox" id="fox">
+                        <div class="fox-tail"></div>
+                        <div class="fox-body"></div>
+                        <div class="fox-head">
+                            <div class="fox-ear fox-ear-left"></div>
+                            <div class="fox-ear fox-ear-right"></div>
+                            <div class="fox-eye fox-eye-left"></div>
+                            <div class="fox-eye fox-eye-right"></div>
+                            <div class="fox-nose"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Fox message bubble -->
+                    <div class="fox-message" id="foxMessage">Hello! Welcome to my bower!</div>
+                </div>
+            </section>
+            
+            <section class="controls">
+                <h2 class="controls-title">Bower Controls</h2>
+                
+                <div class="control-group">
+                    <label class="control-label">Interact with the Fox</label>
+                    <button class="btn" id="btnPet"><i class="fas fa-hand-paper"></i> Pet the Fox</button>
+                    <button class="btn" id="btnFeed"><i class="fas fa-apple-alt"></i> Feed the Fox</button>
+                    <button class="btn" id="btnPlay"><i class="fas fa-baseball-ball"></i> Play with Fox</button>
+                    <button class="btn" id="btnSleep"><i class="fas fa-moon"></i> Put Fox to Sleep</button>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Adjust Bower Lighting</label>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="50" class="slider" id="lightSlider">
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Change Time of Day</label>
+                    <button class="btn" id="btnDay"><i class="fas fa-sun"></i> Daytime</button>
+                    <button class="btn" id="btnNight"><i class="fas fa-moon"></i> Nighttime</button>
+                    <button class="btn" id="btnDawn"><i class="fas fa-cloud-sun"></i> Dawn</button>
+                </div>
+                
+                <div class="status">
+                    <h3 class="status-title">Fox Status</h3>
+                    <p class="status-text" id="foxStatus">The fox is resting peacefully in its bower. It seems content and comfortable.</p>
+                </div>
+            </section>
+        </div>
+        
+        <footer class="footer">
+            <p>Created with <i class="fas fa-heart" style="color:#ff5252;"></i> | The Fox Bower is a digital sanctuary for our furry friend</p>
+            <p>Use the controls to interact with the fox and customize its bower</p>
+        </footer>
+    </div>
+
+    <script>
+        // DOM Elements
+        const fox = document.getElementById('fox');
+        const foxMessage = document.getElementById('foxMessage');
+        const foxStatus = document.getElementById('foxStatus');
+        const bowerScene = document.getElementById('bowerScene');
+        const stars = document.getElementById('stars');
+        const lightSlider = document.getElementById('lightSlider');
+        
+        // Buttons
+        const btnPet = document.getElementById('btnPet');
+        const btnFeed = document.getElementById('btnFeed');
+        const btnPlay = document.getElementById('btnPlay');
+        const btnSleep = document.getElementById('btnSleep');
+        const btnDay = document.getElementById('btnDay');
+        const btnNight = document.getElementById('btnNight');
+        const btnDawn = document.getElementById('btnDawn');
+        
+        // Fox state
+        let foxState = {
+            happiness: 75,
+            energy: 80,
+            isSleeping: false,
+            position: 'center'
+        };
+        
+        // Initialize stars
+        function createStars() {
+            stars.innerHTML = '';
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 50}%`;
+                star.style.width = `${Math.random() * 3 + 1}px`;
+                star.style.height = star.style.width;
+                star.style.opacity = Math.random() * 0.8 + 0.2;
+                stars.appendChild(star);
+            }
+        }
+        
+        // Show message from fox
+        function showMessage(message, duration = 3000) {
+            foxMessage.textContent = message;
+            foxMessage.style.opacity = 1;
+            
+            setTimeout(() => {
+                foxMessage.style.opacity = 0;
+            }, duration);
+        }
+        
+        // Update fox status display
+        function updateStatus() {
+            let statusText = '';
+            
+            if (foxState.isSleeping) {
+                statusText = "The fox is sleeping peacefully. Zzz...";
+            } else if (foxState.happiness > 80) {
+                statusText = "The fox is very happy and playful!";
+            } else if (foxState.happiness > 60) {
+                statusText = "The fox is content and relaxed.";
+            } else if (foxState.happiness > 40) {
+                statusText = "The fox seems a bit bored.";
+            } else {
+                statusText = "The fox is restless and needs attention.";
+            }
+            
+            statusText += ` Energy: ${foxState.energy}%, Happiness: ${foxState.happiness}%`;
+            foxStatus.textContent = statusText;
+        }
+        
+        // Move fox to a new position
+        function moveFox(position) {
+            foxState.position = position;
+            
+            switch(position) {
+                case 'left':
+                    fox.style.left = '30%';
+                    break;
+                case 'right':
+                    fox.style.left = '70%';
+                    break;
+                case 'center':
+                default:
+                    fox.style.left = '50%';
+                    break;
+            }
+        }
+        
+        // Pet the fox
+        btnPet.addEventListener('click', function() {
+            if (foxState.isSleeping) {
+                showMessage("Shhh... I'm sleeping!");
+                return;
+            }
+            
+            foxState.happiness = Math.min(100, foxState.happiness + 10);
+            showMessage("That feels nice! Thank you for the pets.");
+            
+            // Animate the fox
+            fox.style.transform = 'translateX(-50%) scale(1.1)';
+            setTimeout(() => {
+                fox.style.transform = 'translateX(-50%) scale(1)';
+            }, 300);
+            
+            updateStatus();
+        });
+        
+        // Feed the fox
+        btnFeed.addEventListener('click', function() {
+            if (foxState.isSleeping) {
+                showMessage("I'm not hungry right now, I'm sleeping!");
+                return;
+            }
+            
+            foxState.happiness = Math.min(100, foxState.happiness + 5);
+            foxState.energy = Math.min(100, foxState.energy + 15);
+            showMessage("Yum! Thank you for the food!");
+            
+            // Animate the fox
+            moveFox('center');
+            fox.style.transform = 'translateX(-50%) translateY(-20px)';
+            setTimeout(() => {
+                fox.style.transform = 'translateX(-50%) translateY(0)';
+            }, 500);
+            
+            updateStatus();
+        });
+        
+        // Play with the fox
+        btnPlay.addEventListener('click', function() {
+            if (foxState.isSleeping) {
+                showMessage("Zzz... maybe later...");
+                return;
+            }
+            
+            if (foxState.energy < 20) {
+                showMessage("I'm too tired to play right now...");
+                return;
+            }
+            
+            foxState.happiness = Math.min(100, foxState.happiness + 15);
+            foxState.energy = Math.max(0, foxState.energy - 20);
+            showMessage("Yay! I love playing!");
+            
+            // Animate the fox jumping
+            moveFox(Math.random() > 0.5 ? 'left' : 'right');
+            fox.style.transform = 'translateX(-50%) translateY(-40px)';
+            setTimeout(() => {
+                fox.style.transform = 'translateX(-50%) translateY(0)';
+            }, 300);
+            
+            updateStatus();
+        });
+        
+        // Put fox to sleep
+        btnSleep.addEventListener('click', function() {
+            if (foxState.isSleeping) {
+                showMessage("I'm already sleeping!");
+                return;
+            }
+            
+            foxState.isSleeping = true;
+            showMessage("Goodnight... Zzz...");
+            
+            // Change fox appearance to sleeping
+            fox.style.opacity = '0.8';
+            
+            updateStatus();
+            
+            // Wake up after some time
+            setTimeout(() => {
+                foxState.isSleeping = false;
+                foxState.energy = 100;
+                fox.style.opacity = '1';
+                showMessage("Good morning! I feel refreshed!");
+                updateStatus();
+            }, 10000); // 10 seconds
+        });
+        
+        // Change time of day
+        btnDay.addEventListener('click', function() {
+            bowerScene.style.background = 'linear-gradient(to bottom, #87CEEB 0%, #2d5a3d 30%, #1e3a29 100%)';
+            document.querySelector('.moon').style.opacity = '0';
+            stars.style.opacity = '0';
+            showMessage("I love the daytime! So much to explore.");
+        });
+        
+        btnNight.addEventListener('click', function() {
+            bowerScene.style.background = 'linear-gradient(to bottom, #0f1a30 0%, #1e3a29 30%, #15271d 100%)';
+            document.querySelector('.moon').style.opacity = '0.8';
+            stars.style.opacity = '1';
+            showMessage("The night is beautiful, isn't it?");
+        });
+        
+        btnDawn.addEventListener('click', function() {
+            bowerScene.style.background = 'linear-gradient(to bottom, #FFB74D 0%, #FF9800 10%, #2d5a3d 30%, #1e3a29 100%)';
+            document.querySelector('.moon').style.opacity = '0.4';
+            stars.style.opacity = '0.5';
+            showMessage("The sunrise is my favorite time of day!");
+        });
+        
+        // Adjust lighting with slider
+        lightSlider.addEventListener('input', function() {
+            const brightness = this.value;
+            bowerScene.style.filter = `brightness(${brightness}%)`;
+            
+            if (brightness < 30) {
+                showMessage("It's getting dark in here...");
+            } else if (brightness > 70) {
+                showMessage("So bright and cheerful!");
+            }
+        });
+        
+        // Fox random movements
+        setInterval(() => {
+            if (!foxState.isSleeping && Math.random() > 0.7) {
+                const positions = ['left', 'center', 'right'];
+                const newPosition = positions[Math.floor(Math.random() * positions.length)];
+                
+                if (newPosition !== foxState.position) {
+                    moveFox(newPosition);
+                    showMessage("Just exploring my bower...", 2000);
+                }
+            }
+        }, 5000);
+        
+        // Initialize
+        createStars();
+        updateStatus();
+        
+        // Show welcome message after a delay
+        setTimeout(() => {
+            showMessage("Welcome to my bower! I'm happy to have you here.");
+        }, 1000);
+    </script>
+</body>
+</html>
